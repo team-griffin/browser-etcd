@@ -17,7 +17,7 @@ class Client {
     let fetchOptions = {
       method,
       headers: {
-        'Accepts': 'application/json',
+        'Accept': 'application/json',
       }
     };
 
