@@ -1,0 +1,44 @@
+{
+  "name": "@team-griffin/browser-etcd",
+  "version": "0.1.0",
+  "main": "lib/index.js",
+  "jsnext:main": "lib/index.js",
+  "main": "index.js",
+  "repository": "git@github.com:team-griffin/browser-etcd.git",
+  "author": "Joshua Thornton <joshua.thornton@heg.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "node_modules/.bin/karma start ./config/karma.conf.js",
+    "prepublish": "npm run build",
+    "transpile": "babel src -d lib --copy-files",
+    "build": "npm run transpile"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "babel-register": "^6.24.0",
+    "chai": "^3.5.0",
+    "isparta-loader": "^2.0.0",
+    "istanbul-instrumenter-loader": "1.2.0",
+    "json-loader": "^0.5.4",
+    "karma": "^1.5.0",
+    "karma-coverage": "^1.1.1",
+    "karma-mocha": "^1.3.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-webpack": "^2.0.3",
+    "lodash": "^4.17.4",
+    "mocha": "^3.2.0",
+    "phantomjs-prebuilt": "^2.1.14",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "@team-griffin/rxjs-fetch": "^3.0.0",
+    "lodash.sample": "^4.2.1",
+    "rxjs": "^5.2.0",
+    "url": "^0.11.0"
+  }
+}
