@@ -1,6 +1,6 @@
 import { createClient } from './Client';
 import { toPromise } from 'rxjs/operator/toPromise';
-import { map } from 'rxjs/operator/map';
+import { switchMap } from 'rxjs/operator/switchMap';
 
 class Etcd {
   constructor(hosts, options, createClient) {
@@ -17,7 +17,7 @@ class Etcd {
       },    
     })
       .failOnHttpError()
-      ::map((response) => {
+      ::switchMap((response) => {
         return response.json();
       })
       ::toPromise();
@@ -31,7 +31,7 @@ class Etcd {
       },
     })
       .failOnHttpError()
-      ::map((response) => {
+      ::switchMap((response) => {
         return response.json();
       })
       ::toPromise();
@@ -42,7 +42,7 @@ class Etcd {
       path: `/v2/keys/${key}`,
     })
       .failOnHttpError()
-      ::map((response) => {
+      ::switchMap((response) => {
         return response.json();
       })
       ::toPromise();
@@ -53,7 +53,7 @@ class Etcd {
       path: `/v2/keys/${key}`,
     })
       .failOnHttpError()
-      ::map((response) => {
+      ::switchMap((response) => {
         return response.json();
       })
       ::toPromise();
