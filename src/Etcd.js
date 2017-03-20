@@ -1,6 +1,7 @@
 import { createClient } from './Client';
 import { toPromise } from 'rxjs/operator/toPromise';
 import { switchMap } from 'rxjs/operator/switchMap';
+import { failOnHttpError, parseJson} from '@team-griffin/rxjs-fetch';
 
 class Etcd {
   constructor(hosts, options, createClient) {
@@ -16,10 +17,8 @@ class Etcd {
         value,
       },    
     })
-      .failOnHttpError()
-      ::switchMap((response) => {
-        return response.json();
-      })
+      ::failOnHttpError()
+      ::parseJson()
       ::toPromise();
   }
 
@@ -30,10 +29,8 @@ class Etcd {
         value,
       },
     })
-      .failOnHttpError()
-      ::switchMap((response) => {
-        return response.json();
-      })
+      ::failOnHttpError()
+      ::parseJson()
       ::toPromise();
   }
 
@@ -41,10 +38,8 @@ class Etcd {
     return this.client.get({
       path: `/v2/keys/${key}`,
     })
-      .failOnHttpError()
-      ::switchMap((response) => {
-        return response.json();
-      })
+      ::failOnHttpError()
+      ::parseJson()
       ::toPromise();
   }
 
@@ -52,10 +47,8 @@ class Etcd {
     return this.client.delete({
       path: `/v2/keys/${key}`,
     })
-      .failOnHttpError()
-      ::switchMap((response) => {
-        return response.json();
-      })
+      ::failOnHttpError()
+      ::parseJson()
       ::toPromise();
   }
 }
