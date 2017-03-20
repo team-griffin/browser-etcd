@@ -16,6 +16,7 @@ class Etcd {
       },    
     })
       .failOnHttpError()
+      .json()
       ::toPromise();
   }
 
@@ -27,6 +28,7 @@ class Etcd {
       },
     })
       .failOnHttpError()
+      .json()
       ::toPromise();
   }
 
@@ -35,6 +37,7 @@ class Etcd {
       path: `/v2/keys/${key}`,
     })
       .failOnHttpError()
+      .json()
       ::toPromise();
   }
 
@@ -43,6 +46,7 @@ class Etcd {
       path: `/v2/keys/${key}`,
     })
       .failOnHttpError()
+      .json()
       ::toPromise();
   }
 }
