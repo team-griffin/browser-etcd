@@ -1,3 +1,3 @@
-import { createEtcd } from './Etcd';
+import { createEtcd } from './methods';
 
 export default createEtcd;

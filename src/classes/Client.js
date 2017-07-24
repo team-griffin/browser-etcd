@@ -1,11 +1,11 @@
 import sample from 'lodash.sample';
-import rxFetch from '@team-griffin/rxjs-fetch';
 import url from 'url';
 
-class Client {
-  constructor(hosts, options) {
+export default class Client {
+  constructor(hosts, options, http) {
     this.hosts = hosts;
     this.options = options;
+    this.http = http;
   }
 
   request(method, options) {
@@ -14,7 +14,8 @@ class Client {
       pathname: options.path,
     }));
 
-    let fetchOptions = {
+    const config = {
+      url : urlStr,
       method,
       headers: {
         'Accept': 'application/json',
@@ -22,10 +23,10 @@ class Client {
     };
 
     if(options.body) {
-      fetchOptions.body = JSON.stringify(options.body);
+      config.body = options.body;
     }
 
-    return rxFetch(urlStr, fetchOptions);
+    return this.http(config);
   }
 
   get(options) {
@@ -48,9 +49,3 @@ class Client {
     return this.request('DELETE', options);
   }
 }
-
-
-export const createClient = (hosts, options) => {
-  return new Client(hosts, options);
-};
-export default Client;
