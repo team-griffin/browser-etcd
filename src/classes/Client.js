@@ -1,15 +1,15 @@
-import sample from 'lodash.sample';
 import url from 'url';
 
 export default class Client {
-  constructor(hosts, options, http) {
+  constructor(hosts, options, http, sampler) {
     this.hosts = hosts;
     this.options = options;
     this.http = http;
+    this.sampler = sampler;
   }
 
   request(method, options) {
-    const host = sample(this.hosts);
+    const host = this.sampler(this.hosts);
     const urlStr = url.resolve(host, url.format({
       pathname: options.path,
     }));

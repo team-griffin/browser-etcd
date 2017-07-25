@@ -7,7 +7,7 @@
   "author": "Joshua Thornton <joshua.thornton@heg.com>",
   "license": "MIT",
   "scripts": {
-    "test": "node_modules/.bin/karma start ./config/karma.conf.js",
+    "test": "nyc --reporter=html mocha --require ./test/test-setup.js test/**/*.test.js",
     "prepublish": "npm run build",
     "transpile": "babel src -d lib --copy-files",
     "build": "npm run transpile"
@@ -21,13 +21,22 @@
     "babel-preset-stage-0": "^6.22.0",
     "babel-register": "^6.24.0",
     "chai": "^3.5.0",
-    "json-loader": "^0.5.4",
-    "lodash": "^4.17.4",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "mock-http-client": "^0.3.1",
+    "require-extension-hooks": "^0.3.0",
+    "require-extension-hooks-babel": "^0.1.1",
+    "sinon": "^2.3.8"
   },
   "dependencies": {
     "axios": "^0.16.2",
     "lodash.sample": "^4.2.1",
-    "url": "^0.11.0"
+    "nyc": "^11.0.3",
+    "url": "^0.11.0",
+    "webpack": "^3.3.0"
+  },
+  "nyc" : {
+    "include" : [
+      "src/**/*.js"
+    ]
   }
 }
